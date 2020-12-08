@@ -9,8 +9,8 @@ spec:
       - name: kaniko
         image: gcr.io/kaniko-project/executor:latest
         args: ["--dockerfile=Dockerfile",
-               "--context=git://github.com/GHUSER/GHREPO.git#refs/heads/master",
-               "--destination=<repo>/<tag>"]
+               "--context=git://github.com/raghunath1986/kubernetes-kaniko.git#refs/heads/master",
+               "--destination=raghunath1986/nginx:v3"]
         volumeMounts:
         - name: kaniko-secret
           mountPath: "/kaniko/.docker"
@@ -18,7 +18,7 @@ spec:
       volumes:
       - name: kaniko-secret
         secret:
-          secretName: regcred
+          secretName: docker-reg
           items:
           - key: .dockerconfigjson
             path: config.json
